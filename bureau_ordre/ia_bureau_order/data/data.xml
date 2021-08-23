@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="kanban_view_E" model="kanban">
+            <field name="nom">Emission</field>
+            <field name="is_emmision" eval="True"/>
+            <field name="is_repssion" eval="False"/>
+
+
+        </record>
+
+        <record id="kanban_view_R" model="kanban">
+            <field name="nom">Reception</field>
+            <field name="is_emmision" eval="False"/>
+            <field name="is_repssion" eval="True"/>
+
+
+        </record>
+
+
+    </data>
+</odoo>

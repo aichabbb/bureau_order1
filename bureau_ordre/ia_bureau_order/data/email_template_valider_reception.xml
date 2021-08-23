@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="bureau_cart_email" model="mail.template">
+            <field name="name">message: envoyé par email</field>
+            <field name="model_id" ref="ia_bureau_order.model_bureau_order"/>
+            <field name="subject">${ctx.get('subject')}</field>
+            <field name="body_html" type="html">
+                <link href='https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700' rel="stylesheet"/>
+                <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel="stylesheet"/>
+                <div style="margin: 0px; padding: 0px;">
+
+                    <head>
+                        <style>
+                            #p1 {
+                            margin-top: 10px;
+
+                            }
+
+
+                            p {
+
+                            margin-top: 80px;
+                            }
+                            #customers {
+                            font-family: Arial, Helvetica, sans-serif;
+                            border-collapse: collapse;
+                            width: 100%;
+                            margin-top: 100px;
+                            }
+
+                            #customers td, #customers th {
+                            border: 1px solid #ddd;
+                            padding: 8px;
+                            }
+
+                            #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+                            #customers tr:hover {background-color: #ddd;}
+
+                            #customers th {
+                            padding-top: 12px;
+                            padding-bottom: 12px;
+                            text-align: left;
+                            background-color: #4a4d4a;
+                            color: white;
+                            }
+                        </style>
+
+
+                    </head>
+
+
+                    <body>
+
+
+                        <div class="d-flex align-items-center" style=" margin-top: 95px;">
+                            <div class="container container-table">
+
+                                <div>
+                                    Bonjour,
+                                    <br></br>
+                                    <span>${ctx.get('type')}</span> :  <span>${object.sequence}</span>
+                                    <br></br>
+                                    <span>${ctx.get('msg_body')}</span>
+
+
+                                    <p id="p1">Objet : <span>${object.Objet}</span>.
+                                    </p>
+                                </div>
+                                % if ctx['b_valider']:
+                                        <div style="margin: 16px 0px 16px 0px;">
+
+                                                                   <a href="/mail/view?model=bureau.order&amp;res_id=${object.id}&amp;view_type=form&amp;menu_id=${130}"
+                                                                                    style="background-color: #5caad2; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                                                               Voir  </a>
+                                                                     </div>
+                                % endif
+                                    <p>
+
+                                    </p>
+
+                                 % if ctx['acuser_r_valider']:
+                                        <div style="margin: 16px 0px 16px 0px;">
+
+                                                                   <a href="/mail/view?model=bureau.order&amp;res_id=${object.id}&amp;view_type=form&amp;menu_id=${130}"
+                                                                                    style="background-color: #5caad2; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                                                                                               Voir</a>
+                                                                     </div>
+                                % endif
+                                    <p>
+
+                                    </p>
+                                <!--                                % if ctx.get('b_valider'):-->
+                                <!--                                    <div style="margin: 16px 0px 16px 0px;">-->
+
+                                <!--                                      <a href="/mail/view?model=bureau.order&amp;res_id=${object.id}&amp;view_type=form&amp;menu_id=${130}"-->
+                                <!--                                                              style="background-color: #5caad2; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">-->
+                                <!--                                                                Voir l'affectation</a>-->
+                                <!--                                      </div>-->
+
+                                <!--                                % endif:-->
+                                <!--                                    <p>-->
+
+                                <!--                                    </p>-->
+                            </div>
+                        </div>
+
+                        <table id="customers">
+                            <tr>
+                                <th>Désignation des piéce joindre</th>
+                                <th>Nombre de piéce joindre
+                                </th>
+
+                            </tr>
+                            % for row in object.piece_ligne:
+                            <tr>
+                                <td>
+                                    <span>${row.nom.nompiece}</span>
+                                </td>
+                                <td>
+                                    <span>${row.npj}</span>
+                                </td>
+                            </tr>
+                            %endfor
+
+
+                        </table>
+
+
+                    </body>
+
+
+                </div>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
+

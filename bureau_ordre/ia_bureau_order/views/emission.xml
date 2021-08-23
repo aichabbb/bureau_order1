@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+
+        <record model="ir.ui.view" id="ia_bureau_order_list">
+            <field name="name">BUREAU ORDER list</field>
+            <field name="model">bureau.order</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="sequence"/>
+                    <field name="destinataire_emmision"/>
+                    <field name="Objet"/>
+                    <field name="Remarque"/>
+                    <field name="origin_emission"/>
+                    <field name="date"/>
+                    <field name="piece_ligne"/>
+
+
+                </tree>
+
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ia_bureau_order_form">
+            <field name="name">BUREAU ORDER form</field>
+            <field name="model">bureau.order</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_send_valider_emision" type="object" string="Valider " class="oe_highlight"
+
+                                attrs="{'invisible':[('state_emission','not in',['Brouillon'])]}"/>
+                        <button name="creat_wizart" type="object" string="Accusé De Réception" class="oe_highlight"
+
+                                attrs="{'invisible':[('state_emission','not in',['valider'])]}"/>
+
+                        <button name="action_send_mettre_emission" type="object" string="Mettre En Brouillon "
+                                class="oe_highlight"
+                                attrs="{'invisible':[('state_emission','not in',['valider'])]}"/>
+
+
+                        <field name="state_emission" widget="statusbar"
+                               statusbar_visible="Brouillon,valider,accese_reeption"/>
+
+
+                    </header>
+
+
+                    <sheet>
+                        <h1>
+                            <p style="width:100%;">Emission :
+                                <field name="sequence"/>
+
+
+                            </p>
+                        </h1>
+
+                        <group>
+                            <group>
+                                <field name="origin_emission" required="True" string="Origine"
+                                       attrs="{'readonly':[('state_emission','not in',['Brouillon'])]}"
+                                />
+
+                                <field name="Objet" required="True"
+                                       attrs="{'readonly':[('state_emission','not in',['Brouillon'])]}"
+                                />
+                                <field name="in_reception" invisible="1"
+                                       attrs="{'readonly':[('state_emission','not in',['Brouillon'])]}"
+                                />
+                                <field name="create_uid" invisible="True"/>
+
+
+                            </group>
+                            <group>
+                                <field name="destinataire_emmision" required="True"
+                                       attrs="{'readonly':[('state_emission','not in',['Brouillon'])]}"
+                                />
+
+
+                                <field name="date" attrs="{'readonly':[('state_emission','not in',['Brouillon'])]}"/>
+                                <field name="date_eccese_form"
+                                       attrs="{'invisible':[('state_emission','in',['Brouillon','valider'])]}"
+                                       readonly="True"></field>
+
+                            </group>
+
+                        </group>
+                        <group>
+                            <notebook>
+                                <page name="piece joint" string="piece joint">
+                                    <group>
+                                        <field name="piece_ligne" nolabel="1"
+                                               attrs="{'readonly':[('state_emission','not in',['Brouillon'])]}"
+                                        >
+                                            <tree editable="button">
+
+
+                                                <field name="nom" string="document"/>
+                                                <field name="designation"></field>
+
+
+                                                <field name="npj" string="Nombre "/>
+
+                                                <field name="emition_id" invisible="1" string="Id"/>
+                                                <field name="Remarque"/>
+
+
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </page>
+                            </notebook>
+
+                        </group>
+
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
+
+                </form>
+            </field>
+        </record>
+
+<!--        <record id="bureau_kanban_view" model="ir.ui.view">-->
+<!--            <field name="name">bureau_kanban</field>-->
+<!--            <field name="model">bureau.order</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <kanban class="o_res_partner_kanban">-->
+
+<!--                    <field name="destinataire_emmision"/>-->
+<!--                    <field name="Objet"/>-->
+
+
+<!--                    <field name="Remarque"/>-->
+<!--                   <field name="activity_ids"/>-->
+
+
+<!--                    <templates>-->
+<!--                        <t t-name="kanban-box">-->
+<!--                            <div t-attf-class="oe_kanban_global_click">-->
+
+<!--                                <div class="oe_kanban_details">-->
+<!--                                    <strong class="o_kanban_record_title">-->
+<!--                                        <div class="o_kanban_inline_block" style="margin-left:190px;">-->
+
+<!--                                            <field name="activity_ids" widget="kanban_activity"/>-->
+<!--                                            <field name="date"></field>-->
+<!--                                            <field name="activity_state"/>-->
+<!--                                            <progressbar field="activity_state"-->
+<!--                                                         colors='{"planned": "success", "today": "warning", "overdue": "danger"}'-->
+<!--                                                         sum_field="planned_revenue"-->
+<!--                                                         help="This bar allows to filter the opportunities based on scheduled activities."/>-->
+
+<!--                                        </div>-->
+<!--                                        <br></br>-->
+
+<!--                                        <field name="sequence"/>-->
+<!--                                        <br></br>-->
+<!--                                        destainateur :-->
+<!--                                        <field name="destinataire_emmision"/>-->
+<!--                                        <br></br>-->
+<!--                                        origin :-->
+<!--                                        <field name="origin_emission"/>-->
+<!--                                        <br></br>-->
+
+<!--                                        &lt;!&ndash;                                        <div class="oe_kanban_bottom_left">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            <field name="state_emission" widget="label_selection"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                   options="{'classes': {'valider': 'primary', 'Accusé de réception': 'success'}}"/>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        <div class="oe_kanban_bottom_right">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            <span class="float-right text-right">&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                <field name="state_emission" widget="label_selection"&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                                       options="{'classes': {'valider': 'primary', 'Accusé de réception': 'success'}}"/>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                            </span>&ndash;&gt;-->
+<!--                                        &lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--                                        <div class="oe_kanban_bottom_right">-->
+<!--                                            <span class="float-right text-right">-->
+<!--                                                <field name="state_emission" widget="label_selection"-->
+<!--                                                       options="{'classes': {'valider': 'primary', 'Accusé de réception': 'warning', 'Brouillon': 'success'}}"/>-->
+
+
+<!--                                            </span>-->
+<!--                                        </div>-->
+
+
+<!--                                    </strong>-->
+
+
+<!--                                </div>-->
+<!--                            </div>-->
+
+
+<!--                        </t>-->
+<!--                    </templates>-->
+<!--                </kanban>-->
+<!--            </field>-->
+<!--        </record>-->
+         <record id="bureau_kanban_view" model="ir.ui.view">
+            <field name="name">bureau_kanban_emission</field>
+            <field name="model">bureau.order</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="destinataire_emmision"/>
+                    <field name="origin_emission"></field>
+                    <field name="Objet"/>
+                    <field name="activity_state"/>
+
+                    <field name="date"></field>
+                    <field name="Remarque"/>
+                    <field name="activity_ids"/>
+
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+
+
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <div class="o_kanban_inline_block" style="margin-left:190px;">
+
+
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                            <field name="date"></field>
+                                            <field name="activity_state"/>
+                                            <progressbar field="activity_state"
+                                                         colors='{"planned": "success", "today": "warning", "overdue": "danger"}'
+                                                         sum_field="planned_revenue"
+                                                         help="This bar allows to filter the opportunities based on scheduled activities."/>
+
+                                        </div>
+                                        <br></br>
+
+                                        <field name="sequence"/>
+                                        <br></br>
+                                        destainateur :
+                                        <field name="destinataire_emmision"/>
+                                        <br></br>
+                                        origin :
+                                        <field name="origin_emission"/>
+<!--                                        <div style="margin-left:80%;">-->
+<!--                                            <field name="state" widget="label_selection"-->
+<!--                                                   options="{'classes': {'valider': 'primary', 'approver': 'success', 'fermer': 'warning'}}"/>-->
+<!--                                        </div>-->
+                                         <div class="oe_kanban_bottom_right">
+                                            <span class="float-right text-right">
+                                                <field name="state_emission" widget="label_selection"
+                                                   options="{'classes': {'valider': 'success', 'accese_reeption': 'primary', 'Brouillon': 'warning'}}"/>
+
+
+                                            </span>
+                                        </div>
+
+
+                                    </strong>
+
+
+                                </div>
+
+                            </div>
+                        </t>
+
+
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="ia_bureau_order.action_window">
+            <field name="name">Emission</field>
+            <field name="res_model">bureau.order</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('in_reception', '=',False)]</field>
+
+
+        </record>
+
+
+        <menuitem name="Bureau order" id="ia_bureau_order.menu_root"/>
+
+        <menuitem name="Emission" id="ia_bureau_order.menu_1" parent="ia_bureau_order.menu_root"
+                  action="ia_bureau_order.action_window"/>
+
+
+    </data>
+</odoo>

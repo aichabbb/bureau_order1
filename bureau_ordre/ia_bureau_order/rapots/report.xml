@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+            <report
+                id="report_bureau_order"
+                model="bureau.order"
+                report_type="qweb-pdf"
+                string="Rapport "
+                name="ia_bureau_order.report_bureau"
+                file="ia_bureau_order.report_bureau"
+                print_report_name="'rapport - %s' % (object.sequence)"
+
+
+            />
+
+
+
+
+</odoo>

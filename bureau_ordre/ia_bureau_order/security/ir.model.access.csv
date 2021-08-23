@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bureau_order,bureau_order,model_bureau_order,ia_bureau_order.group_user_br,1,0,0,0
+access_bureau_order_m,bureau_order,model_bureau_order,ia_bureau_order.group_managerbr,1,1,1,1
+access_piece_joint2,piece_joint2,model_piece_joint2,ia_bureau_order.group_user_br,1,0,0,0
+access_piece_joint2_m,piece_joint2,model_piece_joint2,ia_bureau_order.group_managerbr,1,1,1,1
+access_piece_joint,piece_joint,model_piece_joint,ia_bureau_order.group_user_br,1,0,0,0
+access_piece_joint_m,piece_joint,model_piece_joint,ia_bureau_order.group_managerbr,1,1,1,1
+access_kanban,kanban,model_kanban,,1,1,1,1
+
+
+

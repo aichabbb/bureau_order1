@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ <template id="report_bureau">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+
+                <div class="header">
+
+                    <div class="container">
+                        <div class="table table-condensed">
+                            <table width="100%">
+
+                                <tbody>
+                                    <tr>
+                                        <td rowspan="2"
+                                            style="border:1px solid black ;width:18%; text-align: center;">
+                                            <div style="width: 45%;float: left;">
+                                                <img src='/web/binary/company_logo' style="width:200%"/>
+                                            </div>
+                                        </td>
+
+                                        <td rowspan="2"
+                                            style="border:1px solid black ;width:18%;  text-align: center; margin:auto ">
+                                            <t t-if="o.in_reception == True">
+                                                Reception
+                                            </t>
+                                            <t t-else="o.in_reception == False">
+                                                emission
+
+                                            </t>
+                                            <p style=" padding-left:10px" t-field="o.sequence"/>
+
+
+                                        </td>
+                                        <td style="border:1px solid black ; width:20%;  text-align: center; ">
+                                            <span t-field="res_company.partner_id.street2"/>
+                                            <span t-field="res_company.partner_id.street"/>
+                                            <span t-field="res_company.partner_id.city"/>
+                                            <span t-field="res_company.partner_id.country_id"/>
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <div class="col-md-auto">
+                                            <td style="border:1px solid black ; width:25%; text-align: center; ">Version
+                                                :00
+                                            </td>
+
+                                        </div>
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="container">
+
+                    <div style="margin-right:50%;">
+
+                        <t t-call="web.external_layout">
+                            <div class="page"></div>
+
+
+                            <div style="margin-top:100%; margin-left:7%;  ">
+                                <table>
+                                    <tr>
+                                        <td colspan="2">
+                                            <t t-if="o.in_reception == True">
+
+
+                                                <p t-field="o.date"></p>
+                                            </t>
+                                            <t t-else="o.in_reception == False">
+
+                                                <p t-field="o.date"></p>
+
+                                            </t>
+
+
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+
+
+                                        <td>
+                                            <br></br>
+
+
+                                            <p>Destinataire :</p>
+
+
+                                            <p>Objectif :</p>
+
+                                        </td>
+
+                                        <td>
+                                            <br></br>
+
+                                            <t t-if="o.in_reception == True">
+
+
+                                                <p style=" padding-left:10px" t-field="o.Destinataire"/>
+
+
+                                                <p style="font-weight: 800; padding-left:10px; width: 100%;"
+                                                   t-field="o.Objet"/>
+                                            </t>
+                                            <t t-else="o.in_reception == False">
+
+                                                <p style=" padding-left:10px" t-field="o.destinataire_emmision"/>
+
+
+                                                <p style="font-weight: 800; padding-left:10px; width: 100%;"
+                                                   t-field="o.Objet"/>
+
+                                            </t>
+
+
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+
+                            <div class="oe_structure"/>
+                            <div class="row">
+
+                                <div class="col-xs-8"
+                                     style="margin-top:15%;  margin-left: auto; display: block;margin-right: auto;   padding: 35px; padding-right:12px ">
+                                    <centre>
+                                        <table class="table">
+                                            <tr>
+                                                <th style="border:1px solid black ; width:40%;  height: 30px;">
+                                                    Désignation
+                                                    des
+                                                    piéce
+                                                    joindre
+                                                </th>
+                                                <th style="border:1px solid black; height: 50px;  width:30%;">Nombre de
+                                                    piéce
+                                                    joindre
+                                                </th>
+                                                <th style="border:1px solid black; height: 50px;  width:30%;">
+                                                    Remarque
+                                                </th>
+
+                                            </tr>
+
+                                            <span t-foreach="o.piece_ligne" t-as="line">
+                                                <tr>
+                                                    <td style="border:1px solid black ;height: 50px; ">
+
+                                                        <span t-esc="line.designation"/>
+                                                    </td>
+
+                                                    <td style="border:1px solid black; height: 50px; ">
+                                                        <span t-esc="line.npj"/>
+                                                    </td>
+                                                    <td style="border:1px solid black; height: 50px; ">
+                                                        <span t-esc="line.Remarque"/>
+                                                    </td>
+                                                </tr>
+                                            </span>
+                                            <tr width="5%">
+                                                <td style="border:1px solid black ;  height: 200px;  " colspan="3">
+                                                    <p>signature</p>
+
+                                                </td>
+
+                                                <td>
+
+                                                </td>
+
+                                            </tr>
+
+
+                                        </table>
+                                    </centre>
+
+                                </div>
+
+                            </div>
+
+
+
+                        </t>
+                    </div>
+                </div>
+
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

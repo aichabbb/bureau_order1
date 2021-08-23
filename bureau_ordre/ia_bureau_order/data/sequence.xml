@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="seq_reseption" model="ir.sequence">
+            <field name="name">reseption Sequence</field>
+            <field name="code">bureau.reception</field>
+            <field name="res_model">bureau.order</field>
+            <field name="prefix">RC</field>
+            <field name="implementation">standard</field>
+            <field name="padding">3</field>
+            <field name="number_increment">0001</field>
+
+
+        </record>
+
+        <record id="seq_emission" model="ir.sequence">
+            <field name="name">emition Sequence</field>
+            <field name="code">bureau.emission</field>
+            <field name="res_model">bureau.order</field>
+            <field name="prefix">EM</field>
+            <field name="number_increment">0001</field>
+            <field name="implementation">standard</field>
+            <field name="padding">3</field>
+
+
+        </record>
+
+
+    </data>
+</odoo>

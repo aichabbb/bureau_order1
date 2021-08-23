@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record id="reception_searsh" model="ir.ui.view">
+            <field name="name">reception_shearsh</field>
+            <field name="model">bureau.order</field>
+            <field name="arch" type="xml">
+
+                <search string="reception">
+
+                    <field name="Destinataire" string="destinataire reception"
+                           filter_domain="[('Destinataire','ilike',self)]"/>
+                    <field name="origine" string="origin reception" filter_domain="[('origine','ilike',self)]"/>
+                    <field name="date" string="date reception" filter_domain="[('date','ilike',self)]"/>
+
+
+                    <field name="destinataire_emmision" string="destinataire emission"
+                           filter_domain="[('destinataire_emmision','ilike',self)]"/>
+                    <field name="origin_emission" string="origin emission" filter_domain="[('origin_emission','ilike',self)]"/>
+                    <field name="date" string="date emission" filter_domain="[('date','ilike',self)]"/>
+
+                    <group expand="1" string="Group By">
+                        <filter string="destinataire emission"  name="destinataire_emmision" context="{'group_by':'destinataire_emmision'}"/>
+                        <filter string="date emission" name="destinataire_emmision" context="{'group_by':'date'}"/>
+                        <filter string="origin emission" name="origin_emission" context="{'group_by':'origin_emission'}"/>
+                        <filter string="destinataire reception" name="Destinataire" context="{'group_by':'destinataire_emmision'}"/>
+                        <filter string="date reception" name="date" context="{'group_by':'date'}"/>
+                        <filter string="origin reception" name="origine" context="{'group_by':'origine'}"/>
+                        <filter string="table" name="in_reception" context="{'group_by':'in_reception'}"/>
+
+                    </group>
+
+
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>
