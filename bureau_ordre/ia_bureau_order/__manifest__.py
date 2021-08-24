@@ -10,6 +10,9 @@
 
     'author': "",
     'website': "",
+    'price' : '10.0',
+    'currency' : 'USD',
+
 
     'category': 'Uncategorized',
     'version': '12.0.1.1.0',
